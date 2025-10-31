@@ -5,11 +5,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -84,7 +87,7 @@ fun FormDataDiri(modifier: Modifier
                 id = R.dimen.padding medium
             )),
             thickness = dimensionResource(id= R.dimen.divider tipis),
-            color = Color.DarkGrey
+            color = Color.DarkGray
         )
         Button(
             modifier = Modifier.fillMaxSize(fraction = 1f),
@@ -106,6 +109,19 @@ fun FormDataDiri(modifier: Modifier
             thickness = dimensionResource(id=R.dimen.divider tipis),
             color = Color.DarkGray
         )
+        ElevatedCard(
+            elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.Black),
+            modifier = Modifier
+                .height(height = 100.dp)
+                .width(width = 300.dp)
+        ){
+            Column (modifer = Modifier.padding(horizontal = 5.dp, vertical = 15.dp), ){
+                Text(text = "Nama   :"+nama, color = Color.White)
+                Text(text = "Gender   :"+jenis, color = Color.White)
+                Text(text = "Alamat   :"+alamat, color = Color.White)
+            }
+        }
     }
 
 }
