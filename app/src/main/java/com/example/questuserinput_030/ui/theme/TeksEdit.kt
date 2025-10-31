@@ -1,6 +1,5 @@
 package com.example.questuserinput_030.ui.theme
 
-import android.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.questuserinput_030.R
 
 @Composable
 fun FormDataDiri(modifier: Modifier
@@ -62,7 +63,7 @@ fun FormDataDiri(modifier: Modifier
                 Row(modifier = Modifier.selectable(
                     selected = textJK == item,
                     onClick = {textJK == item }
-                ), verticalAlignment = Alignment.CenterHorizontally){
+                ), verticalAlignment = Alignment.CenterVertically){
                     RadioButton(
                         selected = textJK == item,
                         onClick = {
@@ -83,10 +84,10 @@ fun FormDataDiri(modifier: Modifier
         )
 
         Divider(
-            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding medium), top = dimensionResource(
-                id = R.dimen.padding medium
+            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_medium), top = dimensionResource(
+                id = R.dimen.padding_medium
             )),
-            thickness = dimensionResource(id= R.dimen.divider tipis),
+            thickness = dimensionResource(id= R.dimen.divider_tipis),
             color = Color.DarkGray
         )
         Button(
@@ -103,10 +104,10 @@ fun FormDataDiri(modifier: Modifier
         }
 
         Divider(
-            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding medium), top = dimensionResource(
-                id = R.dimen.padding medium
+            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_medium), top = dimensionResource(
+                id = R.dimen.padding_medium
             )),
-            thickness = dimensionResource(id=R.dimen.divider tipis),
+            thickness = dimensionResource(id= R.dimen.divider_tipis),
             color = Color.DarkGray
         )
         ElevatedCard(
@@ -116,7 +117,7 @@ fun FormDataDiri(modifier: Modifier
                 .height(height = 100.dp)
                 .width(width = 300.dp)
         ){
-            Column (modifer = Modifier.padding(horizontal = 5.dp, vertical = 15.dp), ){
+            Column (modifier = Modifier.padding(horizontal = 5.dp, vertical = 15.dp), ){
                 Text(text = "Nama   :"+nama, color = Color.White)
                 Text(text = "Gender   :"+jenis, color = Color.White)
                 Text(text = "Alamat   :"+alamat, color = Color.White)
