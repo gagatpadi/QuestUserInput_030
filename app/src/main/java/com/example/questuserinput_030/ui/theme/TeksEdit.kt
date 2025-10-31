@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -86,8 +87,18 @@ fun FormDataDiri(modifier: Modifier
         )
         Button(
             modifier = Modifier.fillMaxSize(fraction = 1f),
+            // the button is enable when the user make a selection
+            enabled = textAlamat.isNotEmpty(),
+            onClick = {
+                nama=textNama
+                jenis=textJK
+                alamat=textAlamat
+            }
+        ){
+            Text(text = stringResource(id = R.string.submit))
+        }
 
-        )
+
     }
 
 }
