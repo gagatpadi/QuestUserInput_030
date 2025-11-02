@@ -132,20 +132,14 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
                 onValueChange = { rt = it },
                 label = { Text("RT") },
                 modifier = Modifier.weight(1f),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number,
-                    imeAction = ImeAction.Next
-                )
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next)
             )
             OutlinedTextField(
                 value = rw,
                 onValueChange = { rw = it },
                 label = { Text("RW") },
                 modifier = Modifier.weight(1f),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number,
-                    imeAction = ImeAction.Next
-                )
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next)
             )
         }
 
@@ -157,10 +151,7 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
             onValueChange = { umur = it },
             label = { Text("Umur") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done
-            )
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -190,7 +181,7 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        //Syarat & Ketentuan
+        // Checkbox Syarat & Ketentuan
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
@@ -209,5 +200,27 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        //Tombol Submit
+        Button(
+            onClick = {
+                if (validasiData(context, namaLengkap, kotaAsal, tanggalLahir, rt, rw, umur, setuju)) {
+                    val ringkasan = """
+                        Submit Berhasil!
+                        Nama: $namaLengkap
+                        Kota: $kotaAsal
+                        Tgl Lahir: $tanggalLahir
+                        RT/RW: $rt/$rw
+                        Umur: $umur
+                        Jenis Kelamin: $jenisKelamin
+                    """.trimIndent()
+
+                    Toast.makeText(context, ringkasan, Toast.LENGTH_LONG).show()
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("SUBMIT", fontSize = 16.sp)
+        }
     }
 }
+
