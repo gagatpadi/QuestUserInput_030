@@ -151,5 +151,19 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Umur
+        OutlinedTextField(
+            value = umur,
+            onValueChange = { umur = it },
+            label = { Text("Umur") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done
+            )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
