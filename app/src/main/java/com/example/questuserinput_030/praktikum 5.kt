@@ -89,5 +89,16 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Kota Asal
+        OutlinedTextField(
+            value = kotaAsal,
+            onValueChange = { kotaAsal = it },
+            label = { Text("Kota Asal") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
