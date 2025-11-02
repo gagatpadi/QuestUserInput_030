@@ -268,7 +268,7 @@ private fun validasiData(
 ): Boolean {
     // Toast validasi yang gagal tetap dipertahankan
     if (nama.isEmpty() || kota.isEmpty() || tgl.isEmpty() || rt.isEmpty() || rw.isEmpty() || umur.isEmpty()) {
-        Toast.makeText(context, "Semua data harus diisi", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Semua data harus diisi dengan lengkap", Toast.LENGTH_SHORT).show()
         return false
     }
     if (!setuju) {
