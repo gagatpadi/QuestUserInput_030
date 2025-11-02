@@ -100,5 +100,27 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        // Tanggal Lahir
+        OutlinedTextField(
+            value = tanggalLahir,
+            onValueChange = { /* Dibiarkan kosong agar read-only */ },
+            label = { Text("Tanggal Lahir") }, // <-- WARNA DIHAPUS
+            readOnly = true, // Tetap read-only
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { datePickerDialog.show() },
+            trailingIcon = {
+                IconButton(onClick = { datePickerDialog.show() }) {
+                    Icon(
+                        imageVector = Icons.Filled.DateRange,
+                        contentDescription = "Pilih Tanggal"
+                    )
+                }
+            }
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
