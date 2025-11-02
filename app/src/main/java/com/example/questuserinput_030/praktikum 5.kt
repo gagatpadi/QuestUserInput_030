@@ -224,3 +224,24 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
     }
 }
 
+private fun validasiData(
+    context: Context,
+    nama: String,
+    kota: String,
+    tgl: String,
+    rt: String,
+    rw: String,
+    umur: String,
+    setuju: Boolean
+): Boolean {
+    if (nama.isEmpty() || kota.isEmpty() || tgl.isEmpty() || rt.isEmpty() || rw.isEmpty() || umur.isEmpty()) {
+        Toast.makeText(context, "Semua data harus diisi", Toast.LENGTH_SHORT).show()
+        return false
+    }
+    if (!setuju) {
+        Toast.makeText(context, "Anda harus menyetujui syarat dan ketentuan", Toast.LENGTH_SHORT).show()
+        return false
+    }
+    return true
+}
+
