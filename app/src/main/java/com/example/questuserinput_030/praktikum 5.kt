@@ -122,5 +122,34 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // RT dan RW
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            OutlinedTextField(
+                value = rt,
+                onValueChange = { rt = it },
+                label = { Text("RT") },
+                modifier = Modifier.weight(1f),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Next
+                )
+            )
+            OutlinedTextField(
+                value = rw,
+                onValueChange = { rw = it },
+                label = { Text("RW") },
+                modifier = Modifier.weight(1f),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Next
+                )
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
