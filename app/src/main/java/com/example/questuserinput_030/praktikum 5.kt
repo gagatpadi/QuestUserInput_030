@@ -190,5 +190,24 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Syarat & Ketentuan
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { setuju = !setuju }
+        ) {
+            Checkbox(
+                checked = setuju,
+                onCheckedChange = { setuju = it }
+            )
+            Text(
+                text = "Saya setuju dengan syarat dan ketentuan yang berlaku.",
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
     }
 }
