@@ -77,5 +77,17 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // Nama Lengkap
+        OutlinedTextField(
+            value = namaLengkap,
+            onValueChange = { namaLengkap = it },
+            label = { Text("Nama Lengkap") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
