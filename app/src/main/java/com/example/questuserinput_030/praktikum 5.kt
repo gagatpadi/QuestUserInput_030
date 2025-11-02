@@ -15,7 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
+import androidx.compose.material3.* // Ini sudah mencakup AlertDialog dan TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +33,6 @@ import java.util.*
 @Composable
 fun RegistrationScreen(modifier: Modifier = Modifier) {
     // --- State Management ---
-    // 'remember' digunakan untuk menyimpan state dari input pengguna
     var namaLengkap by remember { mutableStateOf("") }
     var kotaAsal by remember { mutableStateOf("") }
     var tanggalLahir by remember { mutableStateOf("") }
@@ -42,11 +41,14 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
     var umur by remember { mutableStateOf("") }
 
     val jenisKelaminOptions = listOf("Laki-laki", "Perempuan")
-    var jenisKelamin by remember { mutableStateOf(jenisKelaminOptions[0]) } // Default
+    var jenisKelamin by remember { mutableStateOf(jenisKelaminOptions[0]) }
 
     var setuju by remember { mutableStateOf(false) }
 
-    // Mendapatkan konteks (diperlukan untuk Toast dan DatePicker)
+    // --- State Baru untuk Pop-up (DITAMBAHKAN) ---
+    var showSuccessDialog by remember { mutableStateOf(false) }
+    var dialogMessage by remember { mutableStateOf("") }
+
     val context = LocalContext.current
     val kalender = Calendar.getInstance()
 
@@ -64,10 +66,10 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
         kalender.get(Calendar.DAY_OF_MONTH)
     )
     Column(
-        modifier = modifier // 1. Terapkan modifier dari parameter
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
-            .verticalScroll(rememberScrollState()) // Agar bisa di-scroll
+            .verticalScroll(rememberScrollState())
     ) {
         Text(
             text = "Formulir Registrasi",
@@ -105,8 +107,8 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
         OutlinedTextField(
             value = tanggalLahir,
             onValueChange = { /* Dibiarkan kosong agar read-only */ },
-            label = { Text("Tanggal Lahir") }, // <-- WARNA DIHAPUS
-            readOnly = true, // Tetap read-only
+            label = { Text("Tanggal Lahir") },
+            readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { datePickerDialog.show() },
@@ -172,7 +174,7 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
                 ) {
                     RadioButton(
                         selected = (jenisKelamin == text),
-                        onClick = null // onClick di-handle oleh parent
+                        onClick = null
                     )
                     Text(text = text, modifier = Modifier.padding(start = 4.dp))
                 }
@@ -200,12 +202,12 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        //Tombol Submit
+        //tombol submit
         Button(
             onClick = {
                 if (validasiData(context, namaLengkap, kotaAsal, tanggalLahir, rt, rw, umur, setuju)) {
+                    // Siapkan pesan untuk pop-up
                     val ringkasan = """
-                        Submit Berhasil!
                         Nama: $namaLengkap
                         Kota: $kotaAsal
                         Tgl Lahir: $tanggalLahir
@@ -214,13 +216,43 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
                         Jenis Kelamin: $jenisKelamin
                     """.trimIndent()
 
-                    Toast.makeText(context, ringkasan, Toast.LENGTH_LONG).show()
+
+                    dialogMessage = ringkasan
+                    showSuccessDialog = true
+
+                    // Toast.makeText(context, ringkasan, Toast.LENGTH_LONG).show()
                 }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("SUBMIT", fontSize = 16.sp)
         }
+
+        // pop up
+        if (showSuccessDialog) {
+            AlertDialog(
+                onDismissRequest = {
+                    showSuccessDialog = false
+                },
+                title = {
+                    Text(text = "Submit Berhasil!")
+                },
+                text = {
+                    Text(text = dialogMessage)
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            showSuccessDialog = false
+                            // TODO: Di sini Anda bisa mereset form atau pindah halaman
+                        }
+                    ) {
+                        Text("OK")
+                    }
+                }
+            )
+        }
+
     }
 }
 
@@ -234,6 +266,7 @@ private fun validasiData(
     umur: String,
     setuju: Boolean
 ): Boolean {
+    // Toast validasi yang gagal tetap dipertahankan
     if (nama.isEmpty() || kota.isEmpty() || tgl.isEmpty() || rt.isEmpty() || rw.isEmpty() || umur.isEmpty()) {
         Toast.makeText(context, "Semua data harus diisi", Toast.LENGTH_SHORT).show()
         return false
@@ -245,3 +278,9 @@ private fun validasiData(
     return true
 }
 
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    RegistrationScreen()
+    // }
+}
