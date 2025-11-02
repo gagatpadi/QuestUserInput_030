@@ -195,7 +195,7 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
                 onCheckedChange = { setuju = it }
             )
             Text(
-                text = "Saya setuju dengan syarat dan ketentuan yang berlaku.",
+                text = "Saya menyetujui dengan syarat dan ketentuan yang berlaku.",
                 modifier = Modifier.padding(start = 8.dp)
             )
         }
