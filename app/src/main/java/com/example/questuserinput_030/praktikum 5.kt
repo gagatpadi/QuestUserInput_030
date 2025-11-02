@@ -46,5 +46,36 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
     var setuju by remember { mutableStateOf(false) }
 
+    // Mendapatkan konteks (diperlukan untuk Toast dan DatePicker)
+    val context = LocalContext.current
+    val kalender = Calendar.getInstance()
 
+    // --- Date Picker Dialog ---
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _, year, month, dayOfMonth ->
+            kalender.set(year, month, dayOfMonth)
+            val format = "dd/MM/yyyy"
+            val sdf = SimpleDateFormat(format, Locale.getDefault())
+            tanggalLahir = sdf.format(kalender.time)
+        },
+        kalender.get(Calendar.YEAR),
+        kalender.get(Calendar.MONTH),
+        kalender.get(Calendar.DAY_OF_MONTH)
+    )
+    Column(
+        modifier = modifier // 1. Terapkan modifier dari parameter
+            .fillMaxSize()
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()) // Agar bisa di-scroll
+    ) {
+        Text(
+            text = "Formulir Registrasi",
+            fontSize = 24.sp,
+            style = MaterialTheme.typography.titleLarge
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+    }
 }
