@@ -165,5 +165,30 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Jenis Kelamin
+        Text("Jenis Kelamin", style = MaterialTheme.typography.bodyLarge)
+        Row(Modifier.fillMaxWidth()) {
+            jenisKelaminOptions.forEach { text ->
+                Row(
+                    Modifier
+                        .selectable(
+                            selected = (jenisKelamin == text),
+                            onClick = { jenisKelamin = text },
+                            role = Role.RadioButton
+                        )
+                        .padding(end = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    RadioButton(
+                        selected = (jenisKelamin == text),
+                        onClick = null // onClick di-handle oleh parent
+                    )
+                    Text(text = text, modifier = Modifier.padding(start = 4.dp))
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
