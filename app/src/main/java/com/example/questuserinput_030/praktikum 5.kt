@@ -235,7 +235,7 @@ fun RegistrationScreen(modifier: Modifier = Modifier) {
                     showSuccessDialog = false
                 },
                 title = {
-                    Text(text = "Submit Berhasil!")
+                    Text(text = "Submit Sudah Berhasil!")
                 },
                 text = {
                     Text(text = dialogMessage)
